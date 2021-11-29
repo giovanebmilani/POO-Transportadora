@@ -24,12 +24,12 @@ public class CadastroFretamentos {
         return this.fretamentos;
     }
 
-    public void liberarVeiculos() {
-        fretamentos.forEach(frete -> frete.liberarVeiculo());
+    public void atualizarStatusVeiculo() {
+        fretamentos.forEach(frete -> frete.setStatusVeiculo());
     }
 
-    public void liberarMotoristas() {
-        fretamentos.forEach(frete -> frete.liberarMotorista());
+    public void atualizarStatusMotorista() {
+        fretamentos.forEach(frete -> frete.setStatusMotorista());
     }
 
     public ArrayList<Entry<Veiculo, Double>> getVeiculosMaisLucrativos() {

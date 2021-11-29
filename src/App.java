@@ -703,7 +703,7 @@ public class App {
     public static void listarMotoristasLivres() {
         System.out.println();
         System.out.println("MOTORISTAS LIVRES: ");
-        fretes.liberarMotoristas();
+        fretes.atualizarStatusMotorista();
         int i = 1;
         for (Funcionario f : funcionarios.getEmOrdemAlfabetica()) {
             if (f instanceof Motorista) {
@@ -720,7 +720,7 @@ public class App {
     public static void listarVeiculosLivres() {
         System.out.println();
         System.out.println("VEICULOS LIVRES:");
-        fretes.liberarVeiculos();
+        fretes.atualizarStatusVeiculo();
         int i = 1;
         for (Veiculo v : veiculos.getEmOrdemFabricacao()) {
             if (v.isLivre()) {

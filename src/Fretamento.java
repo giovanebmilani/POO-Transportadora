@@ -68,7 +68,6 @@ public abstract class Fretamento {
                         if (!condutor.getCnh().isVencida()) {
                             this.condutor = condutor;
                             if (this.dataTermino.isAfter(LocalDate.now())) {
-                                System.out.println("cheguei aqui");
                                 this.condutor.ocupar();
                             }
                             return true;
@@ -98,15 +97,21 @@ public abstract class Fretamento {
         return 0.0;
     }
 
-    public void liberarVeiculo() {
+    public void setStatusVeiculo() {
         if (dataTermino.isBefore(LocalDate.now())) {
             this.veiculo.liberar();
         }
+        else {
+            this.veiculo.ocupar();
+        }
     }
 
-    public void liberarMotorista() {
+    public void setStatusMotorista() {
         if (dataTermino.isBefore(LocalDate.now())) {
             this.condutor.liberar();
+        }
+        else {
+            this.condutor.ocupar();
         }
     }
     
