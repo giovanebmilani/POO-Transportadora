@@ -3,7 +3,7 @@ import java.time.LocalDate;
 import exceptions.DocumentException;
 import exceptions.DriverException;
 import exceptions.DriverIsNotQualifiedException;
-import exceptions.VehicleIsNotFreeException;
+import exceptions.VehicleException;
 
 
 public class FretamentoCargas extends Fretamento {
@@ -24,7 +24,7 @@ public class FretamentoCargas extends Fretamento {
     }
 
     public boolean setVeiculo(VeiculoCarga veiculo) 
-        throws VehicleIsNotFreeException, NullPointerException {
+        throws VehicleException, NullPointerException {
         return super.setVeiculo(veiculo);
     }
 

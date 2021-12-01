@@ -5,6 +5,7 @@ import exceptions.DocumentIsExpiredException;
 import exceptions.DriverException;
 import exceptions.DriverIsNotFreeException;
 import exceptions.DriverIsNotQualifiedException;
+import exceptions.VehicleException;
 import exceptions.VehicleIsNotFreeException;
 
 import java.time.DateTimeException;
@@ -41,7 +42,7 @@ public abstract class Fretamento {
     }
 
     public boolean setVeiculo(Veiculo veiculo) 
-        throws VehicleIsNotFreeException, NullPointerException {
+        throws VehicleException, NullPointerException {
             
         if (veiculo != null) {
             if (veiculo.isLivre()) {

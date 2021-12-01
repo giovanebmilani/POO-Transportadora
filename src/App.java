@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import exceptions.DocumentException;
 import exceptions.DriverException;
+import exceptions.VehicleException;
 import exceptions.VehicleIsNotFreeException;
 
 
@@ -16,7 +17,7 @@ public class App {
     static final Scanner input = new Scanner(System.in);
     static String res;
 
-    public static void main(String args[]) throws DocumentException, DriverException, VehicleIsNotFreeException {
+    public static void main(String args[]) throws DocumentException, DriverException, VehicleException {
 
         funcionarios = new CadastroFuncionarios();
         veiculos = new CadastroVeiculos();

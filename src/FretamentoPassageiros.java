@@ -4,7 +4,7 @@ import java.time.temporal.ChronoUnit;
 import exceptions.DocumentException;
 import exceptions.DriverException;
 import exceptions.DriverIsNotQualifiedException;
-import exceptions.VehicleIsNotFreeException;
+import exceptions.VehicleException;
 
 
 public class FretamentoPassageiros extends Fretamento {
@@ -19,7 +19,7 @@ public class FretamentoPassageiros extends Fretamento {
     }
 
     public boolean setVeiculo(VeiculoPassageiros veiculo) 
-        throws VehicleIsNotFreeException, NullPointerException {
+        throws VehicleException, NullPointerException {
         return super.setVeiculo(veiculo);
     }
 
