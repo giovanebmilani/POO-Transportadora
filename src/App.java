@@ -5,8 +5,6 @@ import java.util.Scanner;
 import exceptions.DocumentException;
 import exceptions.DriverException;
 import exceptions.VehicleException;
-import exceptions.VehicleIsNotFreeException;
-
 
 public class App {
     
@@ -17,115 +15,15 @@ public class App {
     static final Scanner input = new Scanner(System.in);
     static String res;
 
-    public static void main(String args[]) throws DocumentException, DriverException, VehicleException {
+    public static void main(String args[]) {
 
         funcionarios = new CadastroFuncionarios();
         veiculos = new CadastroVeiculos();
         fretes = new CadastroFretamentos();
 
+        cadastraObjetos();
+
         running = true;
-
-        Cnh cnh1 = new Cnh("28934898453", CategoriaCnh.C, LocalDate.of(2030,9,11));
-        Motorista mot1 = new Motorista("Lewis Hamilton", LocalDate.of(1987,5,25), "12345678910", cnh1, false, false);
-
-        Cnh cnh2 = new Cnh("78936925814", CategoriaCnh.B, LocalDate.of(2022,10,17));
-        Motorista mot2 = new Motorista("Ayrton Senna", LocalDate.of(1960,11,1), "98765432100", cnh2, true, false);
-
-        Cnh cnh3 = new Cnh("00011155577", CategoriaCnh.E, LocalDate.of(2040,10,17));
-        Motorista mot3 = new Motorista("Nelson Piquet", LocalDate.of(1950,1,5), "11122233355", cnh3, true, true);
-
-        Cnh cnh4 = new Cnh("99977766669", CategoriaCnh.D, LocalDate.of(2040,10,17));
-        Motorista mot4 = new Motorista("Fernando Alonso", LocalDate.of(1980,8,9), "44422588714", cnh4, false, true);
-
-        Cnh cnh5 = new Cnh("66688877711", CategoriaCnh.B, LocalDate.of(2023,3,17));
-        Manobrista man1 = new Manobrista("Max Verstappen",LocalDate.of(1999,11,30), "04166081455", cnh5);
-
-        Administrativo adm1 = new Administrativo("Michael Schumacher", LocalDate.of(1983,4,4), "12398745388");
-
-        funcionarios.cadastra(mot1);
-        funcionarios.cadastra(mot2);
-        funcionarios.cadastra(mot3);
-        funcionarios.cadastra(mot4);
-        funcionarios.cadastra(man1);
-        funcionarios.cadastra(adm1);
-
-        VeiculoPasseio veiculo1 = new VeiculoPasseio("por7777", "Porshe Panamera Turbo S", 2010, 2048.3);
-        VeiculoPasseio veiculo2 = new VeiculoPasseio("bmw7814", "BMW X6", 2015, 2748.3);
-        VeiculoPasseio veiculo3 = new VeiculoPasseio("gol1234", "Volkswagen Golf GTI", 2021, 1897.1);
-
-        VeiculoCarga veiculo4 = new VeiculoCarga("ram2500", "Dodge RAM 2500", 2022, 3768.45, 1594.45, 2, false);
-        VeiculoCarga veiculo5 = new VeiculoCarga("ram3500", "Dodge RAM 3500", 2019, 6349.23, 3428, 3, false);
-        VeiculoCarga veiculo6 = new VeiculoCarga("for0150", "Ford F-150 Raptor", 2021, 3045.1, 1123.3, 2, false);
-        VeiculoCarga veiculo7 = new VeiculoCarga("vol0540", "Volvo FH 540", 2017, 13045.1, 46238.9, 7, true);
-        VeiculoCarga veiculo8 = new VeiculoCarga("scn0450", "Scania R 450", 2021, 11045.1, 39238.9, 5, true);
-        
-        VeiculoPassageiros veiculo9 = new VeiculoPassageiros("spi7349", "Chevrolet Spin", 2016, 1584.8, 7);
-        VeiculoPassageiros veiculo10 = new VeiculoPassageiros("ren9876", "Renault Master", 2009, 3184.9, 19);
-        VeiculoPassageiros veiculo11 = new VeiculoPassageiros("vol8448", "Volkswagen Kombi", 2000, 2500.3, 15);
-        VeiculoPassageiros veiculo12 = new VeiculoPassageiros("onn8912", "Onibus Mercedes", 2011, 10500.5, 40);
-        VeiculoPassageiros veiculo13 = new VeiculoPassageiros("oni9321", "Onibus Marcopolo", 2011, 11980.5, 53);
-        
-        veiculos.cadastra(veiculo1);
-        veiculos.cadastra(veiculo2);
-        veiculos.cadastra(veiculo3);
-        veiculos.cadastra(veiculo4);
-        veiculos.cadastra(veiculo5);
-        veiculos.cadastra(veiculo6);
-        veiculos.cadastra(veiculo7);
-        veiculos.cadastra(veiculo8);
-        veiculos.cadastra(veiculo9);
-        veiculos.cadastra(veiculo10);
-        veiculos.cadastra(veiculo11);
-        veiculos.cadastra(veiculo12);
-        veiculos.cadastra(veiculo13);
-
-
-
-        FretamentoCargas frete1 = new FretamentoCargas(LocalDate.of(2021,5,25), LocalDate.of(2021,6,25), 4385.45, false);
-        frete1.setVeiculo(veiculo4);
-        frete1.setCondutor(mot1);
-
-        FretamentoCargas frete2 = new FretamentoCargas(LocalDate.of(2019,10,25), LocalDate.of(2020,1,25), 19172, false);
-        frete2.setVeiculo(veiculo4);
-        frete2.setCondutor(mot1);
-
-        FretamentoCargas frete3 = new FretamentoCargas(LocalDate.of(2010,2,1), LocalDate.of(2010,3,25), 8741, true);
-        frete3.setVeiculo(veiculo6);
-        frete3.setCondutor(mot2);
-
-        FretamentoCargas frete4 = new FretamentoCargas(LocalDate.of(2021,2,1), LocalDate.of(2021,8,25), 478741, true);
-        frete4.setVeiculo(veiculo7);
-        frete4.setCondutor(mot3);
-
-        FretamentoCargas frete5 = new FretamentoCargas(LocalDate.of(2019,9,9), LocalDate.of(2019,9,30), 6741, false);
-        frete5.setVeiculo(veiculo5);
-        frete5.setCondutor(mot1);
-
-        FretamentoPassageiros frete6 = new FretamentoPassageiros(LocalDate.of(2021,5,25), LocalDate.of(2021,6,2), 11385.99);
-        frete6.setVeiculo(veiculo9);
-        frete6.setCondutor(mot3);
-
-        FretamentoPassageiros frete7 = new FretamentoPassageiros(LocalDate.of(2021,8,1), LocalDate.of(2021,9,15), 35385.99);
-        frete7.setVeiculo(veiculo13);
-        frete7.setCondutor(mot4);
-
-        FretamentoPassageiros frete8 = new FretamentoPassageiros(LocalDate.of(2021,1,1), LocalDate.of(2021,1,4), 3385.99);
-        frete8.setVeiculo(veiculo11);
-        frete8.setCondutor(mot4);
-
-        FretamentoPassageiros frete9 = new FretamentoPassageiros(LocalDate.of(2021,8,1), LocalDate.of(2022,9,15), 35385.99);
-        frete9.setVeiculo(veiculo10);
-        frete9.setCondutor(mot3);
-
-        fretes.cadastra(frete1);
-        fretes.cadastra(frete2);
-        fretes.cadastra(frete3);
-        fretes.cadastra(frete4);
-        fretes.cadastra(frete5);
-        fretes.cadastra(frete6);
-        fretes.cadastra(frete7);
-        fretes.cadastra(frete8);
-        fretes.cadastra(frete9);
 
         while (running) {
             menuPrincipal();
@@ -756,6 +654,103 @@ public class App {
 
         System.out.println();
         sleep(1);
+    }
+
+    public static void cadastraObjetos() {
+
+        try {
+
+            Cnh cnh1 = new Cnh("28934898453", CategoriaCnh.C, LocalDate.of(2030,9,11));
+            Motorista mot1 = new Motorista("Lewis Hamilton", LocalDate.of(1987,5,25), "12345678910", cnh1, false, false);
+            Cnh cnh2 = new Cnh("78936925814", CategoriaCnh.B, LocalDate.of(2022,10,17));
+            Motorista mot2 = new Motorista("Ayrton Senna", LocalDate.of(1960,11,1), "98765432100", cnh2, true, false);
+            Cnh cnh3 = new Cnh("00011155577", CategoriaCnh.E, LocalDate.of(2040,10,17));
+            Motorista mot3 = new Motorista("Nelson Piquet", LocalDate.of(1950,1,5), "11122233355", cnh3, true, true);
+            Cnh cnh4 = new Cnh("99977766669", CategoriaCnh.D, LocalDate.of(2040,10,17));
+            Motorista mot4 = new Motorista("Fernando Alonso", LocalDate.of(1980,8,9), "44422588714", cnh4, false, true);
+            Cnh cnh5 = new Cnh("66688877711", CategoriaCnh.B, LocalDate.of(2023,3,17));
+            Manobrista man1 = new Manobrista("Max Verstappen",LocalDate.of(1999,11,30), "04166081455", cnh5);
+            Administrativo adm1 = new Administrativo("Michael Schumacher", LocalDate.of(1983,4,4), "12398745388");
+            funcionarios.cadastra(mot1);
+            funcionarios.cadastra(mot2);
+            funcionarios.cadastra(mot3);
+            funcionarios.cadastra(mot4);
+            funcionarios.cadastra(man1);
+            funcionarios.cadastra(adm1);
+
+            VeiculoPasseio veiculo1 = new VeiculoPasseio("por7777", "Porshe Panamera Turbo S", 2010, 2048.3);
+            VeiculoPasseio veiculo2 = new VeiculoPasseio("bmw7814", "BMW X6", 2015, 2748.3);
+            VeiculoPasseio veiculo3 = new VeiculoPasseio("gol1234", "Volkswagen Golf GTI", 2021, 1897.1);
+            VeiculoCarga veiculo4 = new VeiculoCarga("ram2500", "Dodge RAM 2500", 2022, 3768.45, 1594.45, 2, false);
+            VeiculoCarga veiculo5 = new VeiculoCarga("ram3500", "Dodge RAM 3500", 2019, 6349.23, 3428, 3, false);
+            VeiculoCarga veiculo6 = new VeiculoCarga("for0150", "Ford F-150 Raptor", 2021, 3045.1, 1123.3, 2, false);
+            VeiculoCarga veiculo7 = new VeiculoCarga("vol0540", "Volvo FH 540", 2017, 13045.1, 46238.9, 7, true);
+            VeiculoCarga veiculo8 = new VeiculoCarga("scn0450", "Scania R 450", 2021, 11045.1, 39238.9, 5, true);
+            VeiculoPassageiros veiculo9 = new VeiculoPassageiros("spi7349", "Chevrolet Spin", 2016, 1584.8, 7);
+            VeiculoPassageiros veiculo10 = new VeiculoPassageiros("ren9876", "Renault Master", 2009, 3184.9, 19);
+            VeiculoPassageiros veiculo11 = new VeiculoPassageiros("vol8448", "Volkswagen Kombi", 2000, 2500.3, 15);
+            VeiculoPassageiros veiculo12 = new VeiculoPassageiros("onn8912", "Onibus Mercedes", 2011, 10500.5, 40);
+            VeiculoPassageiros veiculo13 = new VeiculoPassageiros("oni9321", "Onibus Marcopolo", 2011, 11980.5, 53);
+        
+            veiculos.cadastra(veiculo1);
+            veiculos.cadastra(veiculo2);
+            veiculos.cadastra(veiculo3);
+            veiculos.cadastra(veiculo4);
+            veiculos.cadastra(veiculo5);
+            veiculos.cadastra(veiculo6);
+            veiculos.cadastra(veiculo7);
+            veiculos.cadastra(veiculo8);
+            veiculos.cadastra(veiculo9);
+            veiculos.cadastra(veiculo10);
+            veiculos.cadastra(veiculo11);
+            veiculos.cadastra(veiculo12);
+            veiculos.cadastra(veiculo13);
+
+            FretamentoCargas frete1 = new FretamentoCargas(LocalDate.of(2021,5,25), LocalDate.of(2021,6,25), 4385.45, false);
+            frete1.setVeiculo(veiculo4);
+            frete1.setCondutor(mot1);
+            FretamentoCargas frete2 = new FretamentoCargas(LocalDate.of(2019,10,25), LocalDate.of(2020,1,25), 19172, false);
+            frete2.setVeiculo(veiculo4);
+            frete2.setCondutor(mot1);
+            FretamentoCargas frete3 = new FretamentoCargas(LocalDate.of(2010,2,1), LocalDate.of(2010,3,25), 8741, true);
+            frete3.setVeiculo(veiculo6);
+            frete3.setCondutor(mot2);
+            FretamentoCargas frete4 = new FretamentoCargas(LocalDate.of(2021,2,1), LocalDate.of(2021,8,25), 478741, true);
+            frete4.setVeiculo(veiculo7);
+            frete4.setCondutor(mot3);
+            FretamentoCargas frete5 = new FretamentoCargas(LocalDate.of(2019,9,9), LocalDate.of(2019,9,30), 6741, false);
+            frete5.setVeiculo(veiculo5);
+            frete5.setCondutor(mot1);
+            FretamentoPassageiros frete6 = new FretamentoPassageiros(LocalDate.of(2021,5,25), LocalDate.of(2021,6,2), 11385.99);
+            frete6.setVeiculo(veiculo9);
+            frete6.setCondutor(mot3);
+            FretamentoPassageiros frete7 = new FretamentoPassageiros(LocalDate.of(2021,8,1), LocalDate.of(2021,9,15), 35385.99);
+            frete7.setVeiculo(veiculo13);
+            frete7.setCondutor(mot4);
+            FretamentoPassageiros frete8 = new FretamentoPassageiros(LocalDate.of(2021,1,1), LocalDate.of(2021,1,4), 3385.99);
+            frete8.setVeiculo(veiculo11);
+            frete8.setCondutor(mot4);
+            FretamentoPassageiros frete9 = new FretamentoPassageiros(LocalDate.of(2021,8,1), LocalDate.of(2022,9,15), 35385.99);
+            frete9.setVeiculo(veiculo10);
+            frete9.setCondutor(mot3);
+            fretes.cadastra(frete1);
+            fretes.cadastra(frete2);
+            fretes.cadastra(frete3);
+            fretes.cadastra(frete4);
+            fretes.cadastra(frete5);
+            fretes.cadastra(frete6);
+            fretes.cadastra(frete7);
+            fretes.cadastra(frete8);
+            fretes.cadastra(frete9);
+
+        } catch(DocumentException e) {
+            System.out.println(e);
+        } catch(DriverException e) {
+            System.out.println(e);
+        } catch(VehicleException e) {
+            System.out.println(e);
+        }
+
     }
 
 }
