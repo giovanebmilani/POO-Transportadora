@@ -33,7 +33,7 @@ public class App {
 
     public static void menuPrincipal() {
 
-        clear();
+        System.out.println();
         System.out.println("========= CONTROLE DE FROTAS DE VEICULOS =========");
         System.out.println("1. Funcionarios");
         System.out.println("2. Veiculos");
@@ -47,15 +47,12 @@ public class App {
         switch(res) {
 
             case "1":
-                clear();
                 menuFuncionarios();
                 break;
             case "2":
-                clear();
                 menuVeiculos();
                 break;
             case "3":
-                clear();
                 menuFretamentos();
                 break;
             case "4":
@@ -72,11 +69,6 @@ public class App {
 
     }
 
-    public static void clear() {  
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();  
-    }
-
     public static void sleep(double seconds) {
         try {
             Thread.sleep((long)(seconds*1000));
@@ -86,6 +78,7 @@ public class App {
 
     public static void menuFuncionarios() {
 
+        System.out.println();
         System.out.println("========= CONTROLE DE FUNCIONARIOS =========");
         System.out.println("1. Cadastrar funcionario");
         System.out.println("2. Listar funcionarios em ordem alfabetica");
@@ -99,19 +92,15 @@ public class App {
         switch(res) {
 
             case "1":
-                clear();
                 cadastrarFuncionario();
                 break;
             case "2":
-                clear();
                 listarFuncionarios();
                 break;
             case "3":
-                clear();
                 buscarFuncionarioCpf();
                 break;
             case "4":
-                clear();
                 menuPrincipal();
                 break;
             default:
@@ -126,6 +115,7 @@ public class App {
 
     public static void cadastrarFuncionario() {
 
+        System.out.println();
         System.out.println("========= CADASTRO DE FUNCIONARIO =========");
         System.out.println("1. Administrativo");
         System.out.println("2. Manobrista");
@@ -157,15 +147,14 @@ public class App {
 
             if (res.equals("1")) {
 
+                System.out.println();
                 try {
                     Administrativo func = new Administrativo(nome, nasc, cpf);
                     funcionarios.cadastra(func);
-                    clear();
                     System.out.println("\nFuncionario administrativo cadastrado com sucesso\n");
                     sleep(2);
                 }
                 catch (DocumentException e) {
-                    clear();
                     System.out.println("\nNão foi possível cadastrar o funcionário");
                     System.out.println(e.getMessage()+"\n");
                     sleep(2);
@@ -189,16 +178,15 @@ public class App {
 
                 if (res.equals("2")) {
 
+                    System.out.println();
                     try {
                         Cnh cnh = new Cnh(numero, CategoriaCnh.valueOf(cat), venc);
                         Manobrista func = new Manobrista(nome, nasc, cpf, cnh);
                         funcionarios.cadastra(func);
-                        clear();
                         System.out.println("\nFuncionario manobrista cadastrado com sucesso\n");
                         sleep(2);
                     }
                     catch (DocumentException e) {
-                        clear();
                         System.out.println("\nNão foi possível cadastrar o funcionário");
                         System.out.println(e.getMessage()+"\n");
                         sleep(2);
@@ -216,16 +204,15 @@ public class App {
                     System.out.println("> Habilitado para cargas passageiros?(true or false): ");
                     passageiros = input.nextBoolean();
 
+                    System.out.println();
                     try {
                         Cnh cnh = new Cnh(numero, CategoriaCnh.valueOf(cat), venc);
                         Motorista func = new Motorista(nome, nasc, cpf, cnh, cargasPerigosas, passageiros);
                         funcionarios.cadastra(func);
-                        clear();
                         System.out.println("\nFuncionario motorista cadastrado com sucesso\n");
                         sleep(2);
                     }
                     catch (DocumentException e) {
-                        clear();
                         System.out.println("\nNão foi possível cadastrar o funcionário");
                         System.out.println(e.getMessage()+"\n");
                         sleep(2);
@@ -244,7 +231,7 @@ public class App {
 
     public static void listarFuncionarios() {
 
-        clear();
+        System.out.println();
         System.out.println("\nLISTA DE FUNCIONARIOS:");
         int i = 1;
         for (Funcionario f : funcionarios.getEmOrdemAlfabetica()) {
@@ -257,6 +244,7 @@ public class App {
 
     public static void buscarFuncionarioCpf() {
 
+        System.out.println();
         System.out.println("BUSCAR FUNCIONARIO");
         System.out.print("> Digite o CPF: ");
         String cpf = input.next();
@@ -275,7 +263,7 @@ public class App {
     public static void menuVeiculos() {
 
         sleep(0.25);
-
+        System.out.println();
         System.out.println("========= CONTROLE DE VEICULOS =========");
         System.out.println("1. Cadastrar veiculo");
         System.out.println("2. Listar veiculos em ordem de ano de fabricacao");
@@ -289,15 +277,12 @@ public class App {
         switch(res) {
 
             case "1":
-                clear();
                 cadastrarVeiculo();
                 break;
             case "2":
-                clear();
                 listarVeiculos();
                 break;
             case "3":
-                clear();
                 buscaVeiculoPlaca();
                 break;
             case "4":
@@ -314,6 +299,7 @@ public class App {
 
     public static void cadastrarVeiculo() {
 
+        System.out.println();
         System.out.println("========= CADASTRO DE VEICULO =========");
         System.out.println("1. Passeio ou utilitario");
         System.out.println("2. Transporte de cargas");
@@ -348,14 +334,13 @@ public class App {
 
             if (res.equals("1")) {
 
+                System.out.println();
                 try {
                     VeiculoPasseio veiculo = new VeiculoPasseio(placa, modelo, fabricacao, peso);
                     veiculos.cadastra(veiculo);
-                    clear();
                     System.out.println("\nVeiculo de passeio cadastrado com sucesso\n");
                     sleep(2);
                 } catch (Exception e) {
-                    clear();
                     System.out.println("\nNão foi possível cadastrar o veiculo");
                     System.out.println(e.getMessage()+"\n");
                     sleep(2);
@@ -377,14 +362,13 @@ public class App {
                 System.out.println("> Tem uma unidade acoplada? (true or false) ");
                 unidadeAcoplada = input.nextBoolean();
 
+                System.out.println();
                 try {
                     VeiculoCarga veiculo = new VeiculoCarga(placa, modelo, fabricacao, peso, capacidadeCarga, numeroEixos, unidadeAcoplada);
                     veiculos.cadastra(veiculo);
-                    clear();
                     System.out.println("\nVeiculo de cargas cadastrado com sucesso\n");
                     sleep(2);
                 } catch (Exception e) {
-                    clear();
                     System.out.println("\nNão foi possível cadastrar o veiculo");
                     System.out.println(e.getMessage()+"\n");
                     sleep(2);
@@ -398,14 +382,13 @@ public class App {
                 System.out.println("> Insira a capacidade de passageiros: ");
                 maxPassageiros = Integer.parseInt(input.nextLine());
 
+                System.out.println();
                 try {
                     VeiculoPassageiros veiculo = new VeiculoPassageiros(placa, modelo, fabricacao, peso, maxPassageiros);
                     veiculos.cadastra(veiculo);
-                    clear();
                     System.out.println("\nVeiculo de passageiros cadastrado com sucesso\n");
                     sleep(2);
                 } catch (Exception e) {
-                    clear();
                     System.out.println("\nNão foi possível cadastrar o veiculo");
                     System.out.println(e.getMessage()+"\n");
                     sleep(2);
@@ -424,7 +407,7 @@ public class App {
 
     public static void listarVeiculos() {
 
-        clear();
+        System.out.println();
         System.out.println("\nLISTA DE VEICULOS:");
         int i = 1;
         for (Veiculo v : veiculos.getEmOrdemFabricacao()) {
@@ -438,6 +421,7 @@ public class App {
 
     public static void buscaVeiculoPlaca() {
 
+        System.out.println();
         System.out.println("BUSCAR VEICULO");
         System.out.print("> Digite a placa: ");
         String placa = input.next();
@@ -457,6 +441,7 @@ public class App {
 
         sleep(0.25);
 
+        System.out.println();
         System.out.println("========= CONTROLE DE FRETAMENTOS =========");
         System.out.println("1. Cadastrar fretamento de veículo");
         System.out.println("2. Listar motoristas livres");
@@ -472,26 +457,21 @@ public class App {
         switch(res) {
 
             case "1":
-                clear();
                 cadastrarFretamento();
                 break;
             case "2":
-                clear();
                 listarMotoristasLivres();
                 menuFretamentos();
                 break;
             case "3":
-                clear();
                 listarVeiculosLivres();
                 menuFretamentos();
                 break;
             case "4":
-                clear();
                 listarHistoricoFretamentos();
                 menuFretamentos();
                 break;
             case "5":
-                clear();
                 listarVeiculosMaisLucrativos();
                 menuFretamentos();
                 break;  
@@ -509,6 +489,7 @@ public class App {
 
     public static void cadastrarFretamento() {
 
+        System.out.println();
         System.out.println("========= CADASTRO DE FRETAMENTO =========");
         System.out.println("1. Fretamento de cargas");
         System.out.println("2. Fretamento de passageiros");
@@ -555,16 +536,15 @@ public class App {
                 System.out.println("> É carga perigosa?(true or false): ");
                 cargaPerigosa = input.nextBoolean();
 
+                System.out.println();
                 try {
                     FretamentoCargas frete = new FretamentoCargas(dataInicio, dataTermino, distanciaPercorrida, cargaPerigosa);
                     frete.setVeiculo(veiculo);
                     frete.setCondutor(condutor);
                     fretes.cadastra(frete);
-                    clear();
                     System.out.println("\nFretamento de cargas cadastrado com sucesso\n");
                     sleep(2);
                 } catch (Exception e) {
-                    clear();
                     System.out.println("\nNão foi possível cadastrar o fretamento");
                     System.out.println(e.getMessage()+"\n");
                     sleep(2);
@@ -579,16 +559,15 @@ public class App {
                 int veiculoId = Integer.parseInt(input.nextLine());
                 veiculo = veiculos.getVeiculoPassageiros(veiculoId);
 
+                System.out.println();
                 try {
                     FretamentoPassageiros frete = new FretamentoPassageiros(dataInicio, dataTermino, distanciaPercorrida);
                     frete.setVeiculo(veiculo);
                     frete.setCondutor(condutor);
                     fretes.cadastra(frete);
-                    clear();
                     System.out.println("\nFretamento de passageiros cadastrado com sucesso\n");
                     sleep(2);
                 } catch (Exception e) {
-                    clear();
                     System.out.println("\nNão foi possível cadastrar o fretamento");
                     System.out.println(e.getMessage()+"\n");
                     sleep(2);
